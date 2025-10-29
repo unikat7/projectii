@@ -7,7 +7,7 @@
     <title>Responsive Signup Form</title>
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
-<!-- CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
 </head>
 <body>
@@ -26,18 +26,37 @@
                     <input type="text" id="lastname" name="lastname" placeholder="Doe" required>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="johndoe123" required>
             </div>
+
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="example@email.com" required>
             </div>
+
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="********" required>
             </div>
+
+            <div class="form-group">
+                <label for="semester">Semester</label>
+                <select id="semester" name="semester" required>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label for="role">Role</label>
                 <select id="role" name="role" required>
@@ -46,10 +65,18 @@
                     <option value="teacher">Teacher</option>
                 </select>
             </div>
+
             <button type="submit" class="submit-btn">Sign Up</button>
+
+            <p class="login-link">
+                Already have an account?
+                <a href="{% url 'signin' %}">Login here</a>
+            </p>
         </form>
     </div>
+
 </body>
+
 <script>
     {% if messages %}
         {% for m in messages %}

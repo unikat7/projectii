@@ -12,6 +12,7 @@ class User(AbstractUser):
     )
 
     role=models.CharField(max_length=10,choices=role_choices)
+    semester=models.IntegerField(default=1)
 
 
     def __str__(self):

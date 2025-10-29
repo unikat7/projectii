@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+</head>
+<body>
+
+    <div class="login-container">
+        <form action="{% url 'signin' %}" method="POST" class="login-form">
+            {% csrf_token %}
+            <h2>Login</h2>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="********" required>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="student">Student</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="semester">Semester</label>
+                <select id="semester" name="semester" required>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+
+            <div class="divider">or</div>
+
+            <div class="social-login">
+                <button type="button" class="btn-google">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google">
+                    Login with Google
+                </button>
+                <button type="button" class="btn-github">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                    Login with GitHub
+                </button>
+            </div>
+
+            <p class="signup-link">
+                Don’t have an account?
+                <a href="{% url 'registeruser' %}">Sign up here</a>
+            </p>
+        </form>
+    </div>
+
+</body>
+
+    <script>
+    {% if messages %}
+        {% for m in messages %}
+            alertify.set('notifier','position', 'bottom-right');
+            alertify.error('{{ m|escapejs }}'); 
+        {% endfor %}
+    {% endif %}
+
+</script>
+</html>
