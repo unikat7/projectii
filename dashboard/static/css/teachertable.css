@@ -1,0 +1,118 @@
+:root {
+    --primary: #4f46e5;
+    --primary-light: #6366f1;
+    --bg: #f8fafc;
+    --text-dark: #1f2937;
+    --text-light: #f9fafb;
+    --white: #ffffff;
+    --hover: #eef2ff;
+    --border: #e5e7eb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text-dark);
+    padding: 50px;
+}
+
+/* ===== Container ===== */
+.teacher-container {
+    max-width: 1000px;
+    margin: auto;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.teacher-container h1 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+/* ===== Table ===== */
+.teacher-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.teacher-table thead {
+    background: var(--primary);
+    color: var(--text-light);
+}
+
+.teacher-table th,
+.teacher-table td {
+    padding: 14px 18px;
+    text-align: left;
+}
+
+.teacher-table tbody tr {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.2s ease;
+}
+
+.teacher-table tbody tr:hover {
+    background: var(--hover);
+}
+
+.teacher-table img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-light);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .teacher-table thead {
+        display: none;
+    }
+
+    .teacher-table,
+    .teacher-table tbody,
+    .teacher-table tr,
+    .teacher-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .teacher-table tr {
+        background: var(--white);
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        padding: 15px;
+    }
+
+    .teacher-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border: none;
+    }
+
+    .teacher-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .teacher-table img {
+        width: 40px;
+        height: 40px;
+    }
+}

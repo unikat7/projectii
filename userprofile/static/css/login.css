@@ -141,3 +141,10 @@ input:focus, select:focus {
         padding: 20px;
     }
 }
+
+.google{
+    text-decoration: none;
+}
+.github{
+    text-decoration: none;
+}

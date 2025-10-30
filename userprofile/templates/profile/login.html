@@ -57,18 +57,18 @@
             <div class="divider">or</div>
 
             <div class="social-login">
-                <button type="button" class="btn-google">
+                <a  class='google' href="{% url 'social:begin' 'google-oauth2' %}"><button type="button" class="btn-google">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google">
                     Login with Google
-                </button>
-                <button type="button" class="btn-github">
+                </button></a>
+                <a class='github' href="{% url 'social:begin' 'github' %}"><button type="button" class="btn-github">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
                     Login with GitHub
-                </button>
+                </button></a>
             </div>
 
             <p class="signup-link">
-                Don’t have an account?
+                Don't have an account?
                 <a href="{% url 'registeruser' %}">Sign up here</a>
             </p>
         </form>
@@ -76,7 +76,7 @@
 
 </body>
 
-    <script>
+<script>
     {% if messages %}
         {% for m in messages %}
             alertify.set('notifier','position', 'bottom-right');

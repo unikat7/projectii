@@ -1,11 +1,66 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/student.css' %}">
 </head>
 <body>
-    student
+    <header class="top-navbar">
+        <div class="logo">
+            <h2>Student<span>Hub</span></h2>
+        </div>
+        <div class="profile-section">
+            <div class="profile" onclick="toggleDropdown()">
+                <img src="" alt="Profile" class="profile-img">
+                <span class="student-name">Yunika Tamang</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div id="dropdown" class="dropdown-menu">
+                <a href="#">Change Password</a>
+                <a href="#">Settings</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="{% url 'teachertable' %}" class="active">View Teachers</a></li>
+                <li><a href="#">View Courses</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>Welcome to Your Dashboard</h1>
+            <p>Select an option from the sidebar to get started.</p>
+
+            <section class="cards">
+                <div class="card">
+                    <h3>Total Teachers</h3>
+                    <p>12</p>
+                </div>
+                <div class="card">
+                    <h3>Total Courses</h3>
+                    <p>8</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById('dropdown').classList.toggle('show');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile, .profile *')) {
+                document.getElementById('dropdown').classList.remove('show');
+            }
+        }
+    </script>
 </body>
 </html>

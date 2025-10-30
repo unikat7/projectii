@@ -22,5 +22,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('userprofile.urls')),
-    path('dashboard/',include('dashboard.urls'))
+    path('dashboard/',include('dashboard.urls')),
+    path('social-auth/', include('social_django.urls', namespace='social')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

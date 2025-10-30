@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Teacher
 
 # Create your views here.
 def teacherdashboard(request):
@@ -10,3 +11,10 @@ def studentdashboard(request):
 
 def admindashboard(request):
     return render(request,"userdashboard/admindashboard.html")
+
+def teachertable(request):
+    teacher=Teacher.objects.all()
+
+    return render(request,"infotable/teachertable.html",{
+        "teacher":teacher
+    })

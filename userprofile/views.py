@@ -30,7 +30,7 @@ def RegisterUser(request):
         if errors:
             for err in errors:
                 messages.error(request, err)
-            return render(request,"register.html")
+            return render(request,"profile/register.html")
 
         user=User.objects.create_user(username=username,password=password,first_name=firstname,last_name=lastname,email=email,role=role,semester=semester)
         if user is not None:

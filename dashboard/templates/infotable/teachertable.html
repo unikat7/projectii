@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher List</title>
+    <link rel="stylesheet" href="{% static 'css/teachertable.css' %}">
+</head>
+<body>
+    <div class="teacher-container">
+        <h1>Teacher Directory</h1>
+        <table class="teacher-table">
+            <thead>
+                <tr>
+                    <th>Profile</th>
+                    <th>Name</th>
+                    <th>Subject Expertise</th>
+                    <th>Semester</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in teacher %}
+                <tr>
+                    <td><img src="{{t.profile_pic.profile_pic.url}}" alt="Teacher 1"></td>
+                    <td>{{t.user.username}}</td>
+                    <td>{{t.subject}}</td>
+                    <td>{{t.user.semester}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
