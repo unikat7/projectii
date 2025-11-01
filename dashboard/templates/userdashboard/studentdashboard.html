@@ -14,14 +14,14 @@
         </div>
         <div class="profile-section">
             <div class="profile" onclick="toggleDropdown()">
-                <img src="" alt="Profile" class="profile-img">
-                <span class="student-name">Yunika Tamang</span>
+                <img src="{{user_data.profile_pic.url}}" alt="Profile" class="profile-img">
+                <span class="student-name">{{user.first_name |upper }} {{user.last_name|upper }}</span>
                 <span class="arrow">▼</span>
             </div>
             <div id="dropdown" class="dropdown-menu">
                 <a href="#">Change Password</a>
                 <a href="#">Settings</a>
-                <a href="#">Logout</a>
+                <a href="{% url "logout" %}">Logout</a>
             </div>
         </div>
     </header>
@@ -30,7 +30,7 @@
         <aside class="sidebar">
             <ul>
                 <li><a href="{% url 'teachertable' %}" class="active">View Teachers</a></li>
-                <li><a href="#">View Courses</a></li>
+                <li><a href="{% url "semselection" %}">View Courses</a></li>
             </ul>
         </aside>
 
@@ -45,7 +45,7 @@
                 </div>
                 <div class="card">
                     <h3>Total Courses</h3>
-                    <p>8</p>
+                    <p>{{courses}}</p>
                 </div>
             </section>
         </main>

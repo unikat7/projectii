@@ -1,0 +1,77 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.courses-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.courses-table thead {
+  background: #007bff;
+  color: #fff;
+}
+
+.courses-table th, .courses-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.courses-table tbody tr:hover {
+  background: #f2f6ff;
+}
+
+.back-btn {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-btn a {
+  text-decoration: none;
+  background: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.back-btn a:hover {
+  background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    margin: 30px 15px;
+    padding: 20px;
+  }
+
+  .courses-table th, .courses-table td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+}

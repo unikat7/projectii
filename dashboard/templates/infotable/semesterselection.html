@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Semester</title>
+  <link rel="stylesheet" href="{% static "css/semesterselection.css" %}">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Select a Semester</h2>
+    <div class="semester-list">
+    {% for s in sem %}
+      <a href="{% url 'coursestable' s.id %}">Semester {{s.sem}}</a>
+    {% endfor %}
+     
+    </div>
+  </div>
+
+</body>
+</html>

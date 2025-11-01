@@ -49,10 +49,13 @@ def signin(request):
         user=authenticate(username=username,password=password,role=role,semester=semester)
         if user is not None:
             if user.role=='teacher':
+                login(request,user)
                 return redirect('teacherdash')
             if user.role=='student':
+                login(request,user)
                 return redirect("studentdash")
             if user.role=='amdin':
+                login(request,user)
                 return redirect('admindash')
         else:
             messages.error(request,"invalid credentials")
@@ -60,4 +63,6 @@ def signin(request):
 
     return render(request,"profile/login.html")
 
-
+def log_out(request):
+    logout(request)
+    return redirect("signin")

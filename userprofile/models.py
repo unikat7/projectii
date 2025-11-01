@@ -19,7 +19,7 @@ class User(AbstractUser):
         return self.username
 
 class ProfilePicture(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="profilepicture",blank=True)
     profile_pic=models.ImageField(upload_to='images/')
 
     def __str__(self):
