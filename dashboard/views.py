@@ -13,24 +13,32 @@ def teacherdashboard(request):
 def studentdashboard(request):
   
     user=request.user
+    sem_user=user.semester
     courses=Courses.objects.filter(sem=user.semester).count()
+    teacher=Teacher.objects.filter(user__semester=sem_user).count()
     user_data=user.profilepicture
     if user.role!="student":
         return redirect("signin")
     return render(request,"userdashboard/studentdashboard.html",{
         "user_data":user_data,
         "user":user,
-        "courses":courses
+        "courses":courses,
+        "teacher":teacher
     })
 
 def admindashboard(request):
     return render(request,"userdashboard/admindashboard.html")
 
-def teachertable(request):
+def teachertable(request,id):
+
     teacher=Teacher.objects.all()
+    semester=Semester.objects.get(id=id)
+    courses=semester.courses.all()
 
     return render(request,"infotable/teachertable.html",{
-        "teacher":teacher
+        "teacher":teacher,
+        "courses":courses,
+        "semester":semester
     })
 
 def SemesterSelection(request):
@@ -49,5 +57,13 @@ def CoursesTable(request,id):
         "semester":semester
     }
     )
+
+
+def SemWiseTeacher(request):
+    semester_number=Semester.objects.all()
+    return render(request,"infotable/semesterteacher.html",{
+        "semester":semester_number
+    })
+
 
 

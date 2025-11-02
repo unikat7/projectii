@@ -20,12 +20,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for t in teacher %}
+                {% for data in courses %}
                 <tr>
-                    <td><img src="{{t.profile_pic.profile_pic.url}}" alt="Teacher 1"></td>
-                    <td>{{t.user.username}}</td>
-                    <td>{{t.subject}}</td>
-                    <td>{{t.user.semester}}</td>
+                    <td><img src="{{data.teacher.profile_pic.profile_pic.url}}" alt="Teacher 1"></td>
+                    <td>{{data.teacher.user.first_name}} {{data.teacher.user.last_name}}</td>
+                    <td>{{data.name}}</td>
+                    <td>{{semester.sem}}</td>
                 </tr>
                 {% endfor %}
             </tbody>

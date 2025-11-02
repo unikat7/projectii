@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/student.css' %}">
 </head>
 <body>
+
     <header class="top-navbar">
         <div class="logo">
             <h2>Student<span>Hub</span></h2>
@@ -29,10 +30,11 @@
     <div class="dashboard-container">
         <aside class="sidebar">
             <ul>
-                <li><a href="{% url 'teachertable' %}" class="active">View Teachers</a></li>
+                <li><a href="{% url 'semwiseteacher' %}" class="active">View Teachers</a></li>
                 <li><a href="{% url "semselection" %}">View Courses</a></li>
             </ul>
         </aside>
+        
 
         <main class="content">
             <h1>Welcome to Your Dashboard</h1>
@@ -41,7 +43,7 @@
             <section class="cards">
                 <div class="card">
                     <h3>Total Teachers</h3>
-                    <p>12</p>
+                    <p>{{teacher}}</p>
                 </div>
                 <div class="card">
                     <h3>Total Courses</h3>
