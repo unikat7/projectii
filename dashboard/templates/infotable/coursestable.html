@@ -4,41 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Semester 1 Courses</title>
-  <link rel="stylesheet" href="{% static "css/coursestable.css" %}">
+  <title>Semester {{semester.sem}} Courses</title>
+  <link rel="stylesheet" href="{% static 'css/coursestable.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
   <div class="container">
-   
-        <h2>Semester {{semester.sem}} Courses</h2>
-   
- 
-   
+    <h2>Semester {{semester.sem}} Courses</h2>
+
     <table class="courses-table">
       <thead>
-      
         <tr>
           <th>Course Code</th>
           <th>Course Name</th>
           <th>Duration</th>
+          {% if request.user.is_staff %}
+            <th colspan="2">Action</th>
+          {% endif %}
         </tr>
-       
-
       </thead>
       <tbody>
-          {% for i in sem_data %}
+        {% for i in sem_data %}
         <tr>
           <td>{{i.code}}</td>
           <td>{{i.name}}</td>
           <td>{{i.credit_hour}}</td>
+          {% if request.user.is_staff %}
+            <td><a href="{% url "deletecourse" i.id %}" class="delete-btn">Delete<i class="fa-solid fa-trash"></i></a></td>
+            <td><a href="#" class="update-btn">Update<i class="fa-solid fa-pen"></i></a></td>
+          {% endif %}
         </tr>
         {% endfor %}
       </tbody>
     </table>
 
     <div class="back-btn">
-      <a href="{% url "semselection" %}">← Back to Semesters</a>
+      <a href="{% url 'semselection' %}">← Back to Semesters</a>
     </div>
   </div>
 

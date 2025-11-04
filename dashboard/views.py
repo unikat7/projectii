@@ -15,7 +15,7 @@ def studentdashboard(request):
     user=request.user
     sem_user=user.semester
     courses=Courses.objects.filter(sem=user.semester).count()
-    teacher=Teacher.objects.filter(user__semester=sem_user).count()
+ 
     user_data=user.profilepicture
     if user.role!="student":
         return redirect("signin")
@@ -27,7 +27,14 @@ def studentdashboard(request):
     })
 
 def admindashboard(request):
-    return render(request,"userdashboard/admindashboard.html")
+    student_count=User.objects.filter(role='student').count()
+    teacher_count=User.objects.filter(role='teacher').count()
+    courses_count=Courses.objects.all().count()
+    return render(request,"userdashboard/admindashboard.html",{
+        "student_count":student_count,
+        "teacher_count":teacher_count,
+        "courses_count":courses_count
+    })
 
 def teachertable(request,id):
 
@@ -64,6 +71,30 @@ def SemWiseTeacher(request):
     return render(request,"infotable/semesterteacher.html",{
         "semester":semester_number
     })
+
+
+
+@login_required(login_url='signin')
+def Teacherdashboard(request):
+    student_count=User.objects.filter(role='student').count()
+    return render(request,"userdashboard/teacherdashboard.html",{
+        "student_count":student_count
+    })
+
+
+def DeleteCourse(request,id):
+    course=Courses.objects.get(id=id)
+    course.delete()
+    return redirect("coursestable")
+
+
+def AddTeacher(request):
+    user=User.objects.all()
+    
+    return render(request,"addteacher.html",{
+        "user":user
+    })
+
 
 
 

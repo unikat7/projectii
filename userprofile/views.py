@@ -46,7 +46,7 @@ def signin(request):
         password=data["password"]
         role=data["role"].lower()
         semester=data["semester"]
-        user=authenticate(username=username,password=password,role=role,semester=semester)
+        user=authenticate(username=username,password=password)
         if user is not None:
             if user.role=='teacher':
                 login(request,user)
@@ -54,9 +54,9 @@ def signin(request):
             if user.role=='student':
                 login(request,user)
                 return redirect("studentdash")
-            if user.role=='amdin':
+            if user.is_staff:
                 login(request,user)
-                return redirect('admindash')
+                return redirect("admindash")
         else:
             messages.error(request,"invalid credentials")
             return redirect('signin')

@@ -1,11 +1,80 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}Dashboard{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-    teacher
+
+    <!-- ======= TOP NAVBAR ======= -->
+    <header class="top-navbar">
+        <div class="logo">
+            <h2>Teacher<span>Hub</span></h2>
+        </div>
+
+        <div class="profile-section">
+            <div class="profile" onclick="toggleDropdown()">
+                <img src="" alt="Profile" class="profile-img">
+                <span class="student-name"></span>
+                <span class="arrow">▼</span>
+            </div>
+
+            <div id="dropdown" class="dropdown-menu">
+                <a href="#">Change Password</a>
+                <a href="#">Settings</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======= MAIN CONTAINER ======= -->
+    <div class="dashboard-container">
+        <!-- ======= SIDEBAR ======= -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#" class="active">View Students</a></li>
+                <li><a href="{% url 'semselection' %}">View Courses</a></li>
+                <li><a href="#">Assign Marks</a></li>
+            </ul>
+        </aside>
+
+        <!-- ======= MAIN CONTENT AREA ======= -->
+        <main class="content">
+            <h1>Welcome to Teacher Dashboard</h1>
+            <p>Quick overview of your data.</p>
+
+            <!-- ======= DASHBOARD CARDS ======= -->
+            <section class="cards">
+                <div class="card">
+                    <h3>Total Students</h3>
+                    <p>{{ total_students }}</p>
+                </div>
+                <div class="card">
+                    <h3>Total Courses</h3>
+                    <p></p>
+                </div>
+            </section>
+
+            {% block content %}
+            <!-- Child templates will insert their page content here -->
+            {% endblock content %}
+        </main>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById('dropdown').classList.toggle('show');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile, .profile *')) {
+                document.getElementById('dropdown').classList.remove('show');
+            }
+        }
+    </script>
+
 </body>
 </html>
