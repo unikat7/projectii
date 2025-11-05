@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assigning Marks</title>
+  <link rel="stylesheet" href="{% static 'css/marksassign.css' %}">
+</head>
+<body>
+hello {{request.user.id}}{{request.user.username}}
+  <div class="container">
+    {% for c in course %}
+    {% if c.sem.sem == level %}
+       <h2>Assigning Marks for {{c.name}} ({{c.code}})</h2>
+    {% endif %}
+    {% endfor %}
+  
+ 
+    <form action="" method="post">
+      {% csrf_token %}
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Marks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in students %}
+            <tr>
+              <td>{{s.first_name}} {{s.last_name}}</td>
+              <td><input type="number" name="marks1" placeholder="Enter marks"></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <button type="submit" class="submit-btn">Save Marks</button>
+    </form>
+  </div>
+
+</body>
+</html>

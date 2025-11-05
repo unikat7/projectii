@@ -3,6 +3,7 @@ from .models import Teacher,Semester,Courses
 from django.contrib.auth.decorators import login_required
 from userprofile.models import User,ProfilePicture
 from django.contrib.auth import logout
+from django.db.models import Q
 
 
 # Create your views here.
@@ -23,7 +24,6 @@ def studentdashboard(request):
         "user_data":user_data,
         "user":user,
         "courses":courses,
-        "teacher":teacher
     })
 
 def admindashboard(request):
@@ -37,7 +37,6 @@ def admindashboard(request):
     })
 
 def teachertable(request,id):
-
     teacher=Teacher.objects.all()
     semester=Semester.objects.get(id=id)
     courses=semester.courses.all()
@@ -56,6 +55,8 @@ def SemesterSelection(request):
 
 
 
+
+    
 def CoursesTable(request,id):
     semester=Semester.objects.get(id=id)
     sem_data=semester.courses.all()
@@ -95,6 +96,21 @@ def AddTeacher(request):
         "user":user
     })
 
+
+
+def MarksAssign(request,id):
+    students=User.objects.filter(semester=id , role='student')
+    level=id
+    # Assuming you have a Teacher model linked to User
+    teacher = Teacher.objects.get(user=request.user)
+    course=Courses.objects.filter(teacher=teacher)
+    print(f"the course is {course}")
+    print(id)
+    return render(request,"infotable/marksassign.html",{
+        "students":students,
+        "course":course,
+        "level":level,
+    })
 
 
 

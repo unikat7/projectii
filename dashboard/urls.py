@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Teacherdashboard,studentdashboard,admindashboard,teachertable,SemesterSelection,CoursesTable,SemWiseTeacher,DeleteCourse,AddTeacher
+from .views import Teacherdashboard,studentdashboard,admindashboard,teachertable,SemesterSelection,CoursesTable,SemWiseTeacher,DeleteCourse,AddTeacher,MarksAssign
 
 
 urlpatterns = [
@@ -11,6 +11,10 @@ urlpatterns = [
     path("coursestable/<int:id>",CoursesTable,name="coursestable"),
     path("semteacher/",SemWiseTeacher,name="semwiseteacher"),
     path("deletecourse/<int:id>",DeleteCourse,name="deletecourse"),
-    path("addteacher/",AddTeacher,name="addteacher")
+    path("addteacher/",AddTeacher,name="addteacher"),
+    path("markassign/<int:id>",MarksAssign,name="markassign")
+
 
 ]
+
+

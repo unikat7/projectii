@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -178,28 +178,28 @@ AUTHENTICATION_BACKENDS = [
  
 
 
-JAZZMIN_SETTINGS = {
-    # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "Library Admin",   # Appears in browser tab
-    "site_header": "Library Dashboard",  # Appears on top-left of the admin
-    "site_brand": "Admin Dashboard",  
+# JAZZMIN_SETTINGS = {
+#     # title of the window (Will default to current_admin_site.site_title if absent or None)
+#     "site_title": "Library Admin",   # Appears in browser tab
+#     "site_header": "Library Dashboard",  # Appears on top-left of the admin
+#     "site_brand": "Admin Dashboard",  
 
-    "topmenu_links": [
-        # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"app": "userprofile"},
-        {"app":"dashboard"}
+#     "topmenu_links": [
+#         # App with dropdown menu to all its models pages (Permissions checked against models)
+#         {"app": "userprofile"},
+#         {"app":"dashboard"}
         
-    ],
-    "hide_apps": [
-        "social_django",     # actual Django app name, not display name
-        "allauth.socialaccount",
-        'django.contrib.auth',
-        'allauth',
-        'allauth.account',
-        'allauth.socialaccount',
-        'social_django'
+#     ],
+#     "hide_apps": [
+#         "social_django",     # actual Django app name, not display name
+#         "allauth.socialaccount",
+#         'django.contrib.auth',
+#         'allauth',
+#         'allauth.account',
+#         'allauth.socialaccount',
+#         'social_django'
         
-    ],
-    "show_ui_builder": True,
-}
+#     ],
+#     "show_ui_builder": True,
+# }
 

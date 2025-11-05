@@ -10,6 +10,7 @@ class Semester(models.Model):
 class Teacher(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic=models.OneToOneField(ProfilePicture,on_delete=models.CASCADE)
+    semester=models.ManyToManyField(Semester,blank=True)
 
 
     def __str__(self):
@@ -17,7 +18,7 @@ class Teacher(models.Model):
 
 class Courses(models.Model):
     sem=models.ForeignKey(Semester,on_delete=models.CASCADE,related_name="courses")
-    teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE,blank=True,default=True)
+    teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE,blank=True,default=True,related_name='teacher')
     code=models.CharField(max_length=20)
     name=models.CharField(max_length=100)
     credit_hour=models.IntegerField(default=1)

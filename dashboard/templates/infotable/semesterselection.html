@@ -13,7 +13,14 @@
     <h2>Select a Semester</h2>
     <div class="semester-list">
     {% for s in sem %}
-      <a href="{% url 'coursestable' s.id %}">Semester {{s.sem}}</a>
+
+      
+      {% if request.user.role == 'teacher' %}
+         <a href="{% url 'markassign' s.id %}">Semester {{s.sem}}</a>
+      
+      {% elif request.user.role == 'student' %}
+            <a href="{% url 'coursestable' s.id %}">Semester {{s.sem}}</a>
+       {% endif %}
     {% endfor %}
      
     </div>
