@@ -29,6 +29,18 @@ class Courses(models.Model):
 
 
 
+class Marks(models.Model):
+    # student=models.ForeignKey(User,on_delete=models.CASCADE,limit_choices_to={'role': 'student'},related_name="student_mark")
+    student=models.IntegerField()
+    teacher=models.ForeignKey(User,on_delete=models.CASCADE, limit_choices_to={'role': 'teacher'},related_name="teacher_mark")
+    course=models.CharField(max_length=200,blank=True,null=True)
+    marks=models.FloatField()
+
+
+    def __str__(self):
+        return self.course
+
+
     
 
 

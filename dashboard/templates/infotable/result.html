@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Student Result Dashboard</h1>
+        </header>
+
+        <section class="student-info">
+            <h2>Student: {{request.user.first_name|upper}} {{request.user.last_name|upper}}</h2>
+            <p>Semester: {{request.user.semester}}</p>
+        </section>
+
+        <section class="result-table-section">
+            <table class="result-table">
+                <tbody>
+                    <!-- Row 1: Subjects -->
+                   
+                    <tr>
+                        {% for c in courses %}
+                        <th>{{c.name}}</th>
+                        {% endfor %}
+                    </tr>
+                  
+
+                    <!-- Row 2: Marks Obtained -->
+                    <tr>
+                        {% for m in marks %}
+                        <td>{{m.marks}}</td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- Overall Remark Row -->
+                    <tr class="overall-remark">
+                        <td colspan="5">Remarks: <span class="remarks pass">Pass</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
-from .models import Teacher,Semester,Courses
+from .models import Teacher,Semester,Courses,Marks
 from django.contrib.auth.decorators import login_required
 from userprofile.models import User,ProfilePicture
 from django.contrib.auth import logout
+from django.http import HttpResponse
 from django.db.models import Q
 
 
@@ -101,16 +102,38 @@ def AddTeacher(request):
 def MarksAssign(request,id):
     students=User.objects.filter(semester=id , role='student')
     level=id
-    # Assuming you have a Teacher model linked to User
     teacher = Teacher.objects.get(user=request.user)
-    course=Courses.objects.filter(teacher=teacher)
-    print(f"the course is {course}")
-    print(id)
+    course=Courses.objects.filter(teacher=teacher,sem__sem=level)
+
+    if request.method=="POST":
+        for stu in students:
+            for c in course:
+                    if request.method=="POST":
+                        student=stu.id
+                        teacher=request.user 
+                        co=c.name
+                        marks=request.POST.get(f"marks_{ stu.id }")
+                        mark=Marks.objects.create(student=student,teacher=teacher,course=co,marks=marks)
+                        mark.save()
     return render(request,"infotable/marksassign.html",{
         "students":students,
         "course":course,
         "level":level,
     })
 
+
+
+def Result(request):
+    semester_obj = Semester.objects.get(sem=request.user.semester)
+    
+    subject=semester_obj.courses.all()
+    mark_of_student=Marks.objects.filter(student=request.user.id)
+  
+    print(subject)
+    print(mark_of_student)
+    return render(request,"infotable/result.html",{
+        "courses":subject,
+        "marks":mark_of_student
+    })
 
 
