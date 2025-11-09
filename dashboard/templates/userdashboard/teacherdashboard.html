@@ -23,8 +23,8 @@
             </div>
 
             <div id="dropdown" class="dropdown-menu">
-                <a href="#">Change Password</a>
-                <a href="#">Settings</a>
+                <a href="{% url 'change_password' %}">Change Password</a>
+                <a href="{% url 'userinfo' %}">Profile</a>
                 <a href="{% url 'logout' %}">Logout</a>
             </div>
         </div>
@@ -38,6 +38,7 @@
                 <li><a href="#" class="active">View Students</a></li>
                 <li><a href="{% url 'semselection' %}">View Courses</a></li>
                 <li><a href="{% url 'semselection' %}">Assign Marks</a></li>
+                 <li><a href="{% url 'change_password' %}">Change Password</a></li>
             </ul>
         </aside>
 
@@ -50,7 +51,7 @@
             <section class="cards">
                 <div class="card">
                     <h3>Total Students</h3>
-                    <p>{{ total_students }}</p>
+                    <p>{{ student_count }}</p>
                 </div>
                 <div class="card">
                     <h3>Total Courses</h3>

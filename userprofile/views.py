@@ -4,7 +4,7 @@ from django.contrib import messages
 import re
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login,logout
-
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -66,3 +66,28 @@ def signin(request):
 def log_out(request):
     logout(request)
     return redirect("signin")
+
+
+@login_required(login_url='signin')
+def UserInfo(request):
+    return render(request,"userinfo/userinfo.html")
+
+
+@login_required(login_url='signin')
+def UpdateUserInfo(request):
+    user=request.user
+    if request.method=="POST":
+        data=request.POST
+        username=data["username"]
+        profile_picture = request.FILES.get("profile_picture")
+
+        if username:
+            user.username = username
+            user.save()
+
+        if profile_picture:
+            profile=user.profilepicture
+            profile.profile_pic = profile_picture  
+            profile.save()
+        return redirect('userinfo')
+    return render(request,"userinfo/updateinfo.html")

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+     <link rel="stylesheet" href="{% static 'css/myinfo/myinfo.css' %}">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="{{request.user.profilepicture.profile_pic.url}}" alt="Profile Picture" class="profile-img">
+                <h2>{{request.user.username}}</h2>
+                <p>{{request.user.role}}</p>
+            </div>
+            <div class="profile-info">
+                <div class="info-row">
+                    <span class="info-label">First Name:</span>
+                    <span class="info-value">{{request.user.first_name}}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Last Name:</span>
+                    <span class="info-value">{{request.user.last_name}}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value">{{request.user.email}}</span>
+                </div>
+                {% comment %} later i will add phone in user {% endcomment %}
+                {% comment %} <div class="info-row">
+                    <span class="info-label">Phone:</span>
+                    <span class="info-value">+123 456 7890</span>
+                </div> {% endcomment %}
+                <div class="info-row">
+                    <span class="info-label">Semester:</span>
+                    <span class="info-value">{{request.user.semester}}</span>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <a href="{% url 'updateinfo' %}"><button>Edit Profile</button></a>
+                <a href="{% url 'change_password' %}"><button>Change Password</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

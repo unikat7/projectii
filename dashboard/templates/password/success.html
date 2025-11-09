@@ -1,0 +1,6 @@
+<h2>Password changed successfully!</h2>
+{% if request.user.role == 'student' %}
+<a href="{% url "studentdash" %}">Go to dashboard</a>
+{% elif request.user.role == 'teacher' %}
+<a href="{% url "teacherdash" %}">Go to dashboard</a>
+{% endif %}

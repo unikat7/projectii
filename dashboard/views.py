@@ -5,7 +5,8 @@ from userprofile.models import User,ProfilePicture
 from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.db.models import Q
-
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 # Create your views here.
 def teacherdashboard(request):
@@ -78,10 +79,13 @@ def SemWiseTeacher(request):
 
 @login_required(login_url='signin')
 def Teacherdashboard(request):
-    student_count=User.objects.filter(role='student').count()
-    return render(request,"userdashboard/teacherdashboard.html",{
-        "student_count":student_count
-    })
+    if request.user.role=='teacher':
+        student_count=User.objects.filter(role='student').count()
+        return render(request,"userdashboard/teacherdashboard.html",{
+            "student_count":student_count
+        })
+    else:
+        return HttpResponse("u r not allowed here ")
 
 
 def DeleteCourse(request,id):
@@ -136,4 +140,20 @@ def Result(request):
         "marks":mark_of_student
     })
 
+@login_required(login_url='signin')
+def Change_Password(request):
+    form=PasswordChangeForm(user=request.user)
+    if request.method=="POST":
+        data=request.POST
+        form=PasswordChangeForm(user=request.user,data=data)
+        if form.is_valid():
+            user=form.save()
+            update_session_auth_hash(request,user)
+            return redirect("successpass")
+    return render(request,"password/changepassword.html",{
+        "form":form
+    })
 
+@login_required(login_url='signin')
+def PassChangeSuccess(request):
+    return render(request,"password/success.html")
