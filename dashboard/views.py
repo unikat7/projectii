@@ -19,11 +19,10 @@ def studentdashboard(request):
     sem_user=user.semester
     courses=Courses.objects.filter(sem=user.semester).count()
  
-    user_data=user.profilepicture
+
     if user.role!="student":
         return redirect("signin")
     return render(request,"userdashboard/studentdashboard.html",{
-        "user_data":user_data,
         "user":user,
         "courses":courses,
     })

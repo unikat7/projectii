@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import User
+from .models import User,ProfilePicture
 from django.contrib import messages
 import re
 from django.http import HttpResponse
@@ -84,10 +84,21 @@ def UpdateUserInfo(request):
         if username:
             user.username = username
             user.save()
+        try:
+            '''even if the user doenot associate with the any pp django 
+        will throw anRelatedObjectDoesNotExist exception immediately,
+        so it doenot check else block so we use try except block 
+        '''
 
-        if profile_picture:
-            profile=user.profilepicture
-            profile.profile_pic = profile_picture  
+            if request.user.profilepicture:
+                profile=user.profilepicture
+                profile.profile_pic = profile_picture  
+                profile.save()
+        except ProfilePicture.DoesNotExist:
+            profile=ProfilePicture.objects.create(user=request.user,profile_pic=profile_picture)
             profile.save()
+
+
+        
         return redirect('userinfo')
     return render(request,"userinfo/updateinfo.html")

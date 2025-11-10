@@ -15,7 +15,11 @@
         </div>
         <div class="profile-section">
             <div class="profile" onclick="toggleDropdown()">
-                <img src="{{user_data.profile_pic.url}}" alt="Profile" class="profile-img">
+                {% if request.user.profilepicture.profile_pic.url %}
+                    <img src="{{request.user.profilepicture.profile_pic.url}}" alt="Profile" class="profile-img">
+                {% else %}
+                    <img src="{% static "images/defaultpp.webp" %}" alt="defaultpp" class="profile-img">
+                {% endif %}
                 <span class="student-name">{{user.first_name |upper }} {{user.last_name|upper }}</span>
                 <span class="arrow">▼</span>
             </div>
