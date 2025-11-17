@@ -95,6 +95,7 @@ def UpdateUserInfo(request):
                 profile.profile_pic = profile_picture  
                 profile.save()
         except ProfilePicture.DoesNotExist:
+            #This exception is raised whenever we try to access an object that does not exist in the database.
             profile=ProfilePicture.objects.create(user=request.user,profile_pic=profile_picture)
             profile.save()
 

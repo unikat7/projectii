@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Assigning Marks</title>
   <link rel="stylesheet" href="{% static 'css/marksassign.css' %}">
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
 </head>
 <body>
 hello {{request.user.id}}{{request.user.username}}
@@ -39,4 +42,14 @@ hello {{request.user.id}}{{request.user.username}}
   </div>
 
 </body>
+
+<script>
+    {% if messages %}
+        {% for m in messages %}
+            alertify.set('notifier','position', 'top-right');
+            alertify.error('{{ m|escapejs }}'); 
+        {% endfor %}
+    {% endif %}
+
+</script>
 </html>

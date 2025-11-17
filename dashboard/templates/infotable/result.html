@@ -38,8 +38,14 @@
                     </tr>
 
                     <!-- Overall Remark Row -->
+                    
                     <tr class="overall-remark">
-                        <td colspan="5">Remarks: <span class="remarks pass">Pass</span></td>
+                        <td colspan="5">Remarks:
+                            {% if mark_count == 5 %}pass
+                    </td>
+                    {% else %}
+                        the result is yet to come
+                    {% endif %}
                     </tr>
                 </tbody>
             </table>

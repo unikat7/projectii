@@ -17,8 +17,8 @@
 
         <div class="profile-section">
             <div class="profile" onclick="toggleDropdown()">
-                <img src="" alt="Profile" class="profile-img">
-                <span class="student-name"></span>
+                <img src="{{request.user.profilepicture.profile_pic.url}}" alt="Profile" class="profile-img">
+                <span class="student-name">{{user.first_name |upper }} {{user.last_name|upper }}</span>
                 <span class="arrow">▼</span>
             </div>
 
@@ -36,8 +36,9 @@
         <aside class="sidebar">
             <ul>
                 <li><a href="#" class="active">View Students</a></li>
-                <li><a href="{% url 'semselection' %}">View Courses</a></li>
-                <li><a href="{% url 'semselection' %}">Assign Marks</a></li>
+            
+                <li><a href="{% url 'semselection' %}?action=view">View Courses</a></li>
+                <li><a href="{% url 'semselection' %}?action=assign">Assign Marks</a></li>
                  <li><a href="{% url 'change_password' %}">Change Password</a></li>
             </ul>
         </aside>

@@ -1,0 +1,92 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tech Path Survey</title>
+  <link rel="stylesheet" href="{% static 'css/techmodel/tech.css' %}" />
+</head>
+<body>
+  <main class="container">
+    <form class="card" method="post">
+    {% csrf_token %}
+      <h1 class="title">Student Tech Preference</h1>
+
+      <div class="field">
+        <label class="label">Do you prefer Design or Logic?</label>
+        <div class="options">
+          <label class="radio">
+            <input type="radio" name="prefer_design_or_logic" value="Design" required>
+            <span>Design</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="prefer_design_or_logic" value="Logic">
+            <span>Logic</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Do you like coding?</label>
+        <div class="options">
+          <label class="radio">
+            <input type="radio" name="like_coding" value="Yes" required>
+            <span>Yes</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="like_coding" value="No">
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Do you enjoy math?</label>
+        <div class="options">
+          <label class="radio">
+            <input type="radio" name="enjoy_math" value="Yes" required>
+            <span>Yes</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="enjoy_math" value="No">
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Do you like solving puzzles?</label>
+        <div class="options">
+          <label class="radio">
+            <input type="radio" name="like_puzzles" value="Yes" required>
+            <span>Yes</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="like_puzzles" value="No">
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Do you like building Apps or Websites?</label>
+        <select name="build_apps_or_websites" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Apps">Apps</option>
+          <option value="Websites">Websites</option>
+          <option value="Both">Both</option>
+        </select>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn">Submit</button>
+        <button type="reset" class="btn secondary">Reset</button>
+      </div>
+      your career is {{prediction}}
+
+      <p class="note">* Make sure every required question is answered.</p>
+    </form>
+  </main>
+</body>
+</html>

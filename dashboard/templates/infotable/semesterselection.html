@@ -16,7 +16,11 @@
 
       
       {% if request.user.role == 'teacher' %}
-         <a href="{% url 'markassign' s.id %}">Semester {{s.sem}}</a>
+        {% if action == 'view' %}
+            <a href="{% url 'coursestable' s.id %}">Semester {{s.sem}}</a>
+      {% else %}
+            <a href="{% url 'markassign' s.id %}">Semester {{s.sem}}</a>
+        {% endif %}
       
       {% elif request.user.role == 'student' %}
             <a href="{% url 'coursestable' s.id %}">Semester {{s.sem}}</a>
