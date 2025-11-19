@@ -4,43 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Login - SMS</title>
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
+    <div class="login-bg">
+        <div class="login-card">
+            <img src="https://gpkmc.edu.np/wp-content/uploads/2023/09/logo1-removebg-preview-2.png" alt="Logo" class="logo">
+            <h2>SMS Login</h2>
+            <p>Login with your credentials or use Google/GitHub</p>
+            
+            <form action="{% url 'signin' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
 
-    <div class="login-container">
-        <form action="{% url 'signin' %}" method="POST" class="login-form">
-            {% csrf_token %}
-            <h2>Login</h2>
-
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter username" required>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="********" required>
-            </div>
-
-            <div class="form-group">
-                <label for="role">Role</label>
-                <select id="role" name="role" required>
-                    <option value="" disabled selected>Select Role</option>
+                <select name="role" required>
+                    <option value="">Select Role</option>
                     <option value="admin">Admin</option>
                     <option value="teacher">Teacher</option>
                     <option value="student">Student</option>
                 </select>
-            </div>
 
-            <div class="form-group">
-                <label for="semester">Semester</label>
-                <select id="semester" name="semester" required>
-                    <option value="" disabled selected>Select Semester</option>
+                <select name="semester">
+                    <option value="">Select Semester</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -50,43 +40,30 @@
                     <option value="7">7</option>
                     <option value="8">8</option>
                 </select>
+
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+
+            <div class="links">
+                <a href="#">Forgot Password?</a>
             </div>
-
-            <button type="submit" class="btn-login">Login</button>
-
-            <div class="divider">or</div>
-
+            <div class="links">
+                <span>Don't have an account? </span><a href="{% url 'registeruser' %}">Register</a>
+            </div>
             <div class="social-login">
-                {% comment %} <a  class='google' href="{% url 'social:begin' 'google-oauth2' %}"> {% endcomment %}
-                    <button type="button" class="btn-google">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google">
-                    Login with Google
-                </button>
-            {% comment %} </a> {% endcomment %}
-                {% comment %} <a class='github' href="{% url 'social:begin' 'github' %}"> {% endcomment %}
-                    <button type="button" class="btn-github">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-                    Login with GitHub
-                </button>
-            {% comment %} </a> {% endcomment %}
+                <button class="google-btn"><i class="fab fa-google"></i> Sign in with Google</button>
+                <button class="github-btn"><i class="fab fa-github"></i> Sign in with GitHub</button>
             </div>
 
-            <p class="signup-link">
-                Don't have an account?
-                <a href="{% url 'registeruser' %}">Sign up here</a>
-            </p>
-        </form>
+        </div>
     </div>
 
+    <script>
+        {% if messages %}
+            {% for m in messages %}
+                alert('{{ m|escapejs }}');
+            {% endfor %}
+        {% endif %}
+    </script>
 </body>
-
-<script>
-    {% if messages %}
-        {% for m in messages %}
-            alertify.set('notifier','position', 'bottom-right');
-            alertify.error('{{ m|escapejs }}'); 
-        {% endfor %}
-    {% endif %}
-
-</script>
 </html>

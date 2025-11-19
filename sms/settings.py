@@ -165,41 +165,5 @@ AUTHENTICATION_BACKENDS = [
     
     ]
 
-
-# SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'http://127.0.0.1:8000/social-auth/complete/google-oauth2/'
-# SOCIAL_AUTH_GITHUB_OAUTH2_REDIRECT_URI='http://localhost:8000/social-auth/complete/github/'
-
-# SOCIAL_AUTH_URL_NAMESPACE = 'social'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ')
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
-
-# SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
-# SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
  
-
-
-# JAZZMIN_SETTINGS = {
-#     # title of the window (Will default to current_admin_site.site_title if absent or None)
-#     "site_title": "Library Admin",   # Appears in browser tab
-#     "site_header": "Library Dashboard",  # Appears on top-left of the admin
-#     "site_brand": "Admin Dashboard",  
-
-#     "topmenu_links": [
-#         # App with dropdown menu to all its models pages (Permissions checked against models)
-#         {"app": "userprofile"},
-#         {"app":"dashboard"}
-        
-#     ],
-#     "hide_apps": [
-#         "social_django",     # actual Django app name, not display name
-#         "allauth.socialaccount",
-#         'django.contrib.auth',
-#         'allauth',
-#         'allauth.account',
-#         'allauth.socialaccount',
-#         'social_django'
-        
-#     ],
-#     "show_ui_builder": True,
-# }
 

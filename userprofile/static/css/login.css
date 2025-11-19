@@ -1,150 +1,145 @@
+/* Reset and fonts */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+body, html {
+  height: 100%;
 }
 
-.login-container {
-    background: #fff;
-    padding: 30px 25px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    width: 100%;
-    max-width: 400px;
+/* Background */
+.login-bg {
+  background: url('https://lh3.googleusercontent.com/gps-cs-s/AG0ilSx6PW96EccHOZQhxNnhrG4toupuaMxWnrz2fK-v8v-NmBVb1WUVyHResUKmtLsquvwUGPtZ_xxtWAuTEB42Iox22hlzAq61bIQsxSmd_Ra2M6fZGdN6pkme3h-27i7RYvRmRi_icQ=s1360-w1360-h1020-rw') no-repeat center center/cover;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.login-form h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #333;
+/* Login Card */
+.login-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px 30px;
+  border-radius: 12px;
+  width: 420px; /* increased width */
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  transition: 0.3s;
 }
 
-.form-group {
-    margin-bottom: 18px;
+.login-card:hover {
+  transform: translateY(-3px);
 }
 
-label {
-    display: block;
-    margin-bottom: 6px;
-    color: #333;
-    font-weight: 500;
+/* Logo */
+.login-card .logo {
+  width: 80px;
+  margin-bottom: 20px;
 }
 
-input, select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
-    outline: none;
+/* Headings */
+.login-card h2 {
+  margin-bottom: 10px;
+  color: #007acc;
 }
 
-input:focus, select:focus {
-    border-color: #2575fc;
+.login-card p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #555;
 }
 
-.btn-login {
-    width: 100%;
-    padding: 10px;
-    background: #2575fc;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
+/* Inputs and Selects */
+.login-card input,
+.login-card select {
+  width: 100%;
+  padding: 12px 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
 }
 
-.btn-login:hover {
-    background: #1a5fd0;
+.login-card input:focus,
+.login-card select:focus {
+  border-color: #007acc;
+  box-shadow: 0 0 5px rgba(0,122,204,0.3);
 }
 
-.divider {
-    text-align: center;
-    margin: 20px 0;
-    font-weight: bold;
-    color: #555;
+/* Login Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007acc;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
+.login-btn:hover {
+  background-color: #005f99;
+}
+
+/* Links (Forgot & Register) */
+.links {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #007acc;
+}
+
+.links a {
+  color: #007acc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.links a:hover {
+  text-decoration: underline;
+  color: #005f99;
+}
+
+.links span {
+  color: #555;
+}
+
+/* Social Login */
 .social-login {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .social-login button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: 0.3s;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.social-login img {
-    width: 20px;
-    height: 20px;
+.google-btn {
+  background-color: #db4437;
+  color: white;
 }
 
-.btn-google {
-    background: #db4437;
-    color: #fff;
+.github-btn {
+  background-color: #333;
+  color: white;
 }
 
-.btn-github {
-    background: #333;
-    color: #fff;
+.google-btn:hover {
+  background-color: #c1351d;
 }
 
-.btn-google:hover {
-    background: #c23321;
-}
-
-.btn-github:hover {
-    background: #242424;
-}
-.signup-link {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-    color: #555;
-}
-
-.signup-link a {
-    color: #2575fc;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
-}
-
-
-/* Responsive design */
-@media (max-width: 480px) {
-    .login-container {
-        padding: 20px;
-    }
-}
-
-.google{
-    text-decoration: none;
-}
-.github{
-    text-decoration: none;
+.github-btn:hover {
+  background-color: #111;
 }

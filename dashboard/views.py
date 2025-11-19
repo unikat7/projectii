@@ -214,4 +214,26 @@ def TechInquiry(request):
 
 
 def StudentView(request):
-    return render(request,"infotable/viewstudent.html")
+    display=None
+    students=User.objects.filter(role='student')
+    query=request.GET.get("q")
+   
+    if query:
+        if query.isdigit():  
+            students = students.filter(semester__icontains=query)
+            if not students:
+                display="data not found"
+        else:  
+            students = students.filter(
+                Q(first_name__icontains=query) | Q(last_name__icontains=query)
+            )
+            if not students:
+                display="data not found"
+        return render(request,"infotable/viewstudent.html",{
+        "students":students,
+        "display":display
+    })
+
+    return render(request,"infotable/viewstudent.html",{
+        "students":students
+    })

@@ -1,23 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
+{% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Students - Teacher View</title>
+  <link rel="stylesheet" href="{% static 'css/viewstudent.css' %}" />
 </head>
 <body>
-    <table>
-        <thead>
-        <td>Fullname</td>
-        <td>Semester</td>
-        </thead>
-        <tbody>
-            {% for s in student %}
-                <tr>unika</tr>
-                <tr>1</tr>
-            {% endfor %}
-        </tbody>
-        
+  <main class="container">
+    <h1 class="page-title">Student List</h1>
+
+    <!-- 🔍 SEARCH BAR UI -->
+    <form class="search-box">
+        <input type="text" name="q" placeholder="Search students by name/semester...">
+        <button type="submit">Search</button>
+    </form>
+
+
+    <!-- 🔍 END SEARCH BAR -->
+
+    <table class="students-table">
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Semester</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in students %}
+        <tr>
+           <td class="photo-cell">
+             <img src="{{ s.profilepicture.profile_pic.url }}" alt="Photo" class="avatar"/>
+           </td>
+           <td>{{ s.first_name }}</td>
+           <td>{{ s.last_name }}</td>
+           <td>{{ s.email }}</td>
+           <td>{{ s.semester }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
+        {% if display %}
+        <div class="no-data-message">
+            {{ display }}
+        </div>
+    {% endif %}
+
+  </main>
 </body>
 </html>
