@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import Teacherdashboard,studentdashboard,admindashboard,teachertable,SemesterSelection,CoursesTable,SemWiseTeacher,DeleteCourse,AddTeacher,MarksAssign,Result,Change_Password,PassChangeSuccess,TechInquiry
+from .views import Teacherdashboard,studentdashboard,teachertable,SemesterSelection,CoursesTable,SemWiseTeacher,DeleteCourse,AddTeacher,MarksAssign,Result,Change_Password,PassChangeSuccess,TechInquiry,StudentView
 
 urlpatterns = [
-    path("",admindashboard,name="admindash"),
     path("teacher/",Teacherdashboard,name="teacherdash"),
     path("student/",studentdashboard,name="studentdash"),
     path("teachertable/<int:id>",teachertable,name="teachertable"),
@@ -15,7 +14,10 @@ urlpatterns = [
     path("result/",Result,name="result"),
     path('change-password/', Change_Password, name='change_password'),
     path('successpass/',PassChangeSuccess,name="successpass"),
+    #ml model 
     path('tech/',TechInquiry,name='tech'),
+    #student view
+    path('viewstudent/',StudentView,name="viewstudent")
 ]
 
 

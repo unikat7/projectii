@@ -27,28 +27,19 @@ def teacherdashboard(request):
 
 @login_required(login_url='signin')
 def studentdashboard(request):
-  
     user=request.user
     sem_user=user.semester
     courses=Courses.objects.filter(sem=user.semester).count()
- 
-
+    teacher=Teacher.objects.filter(semester=user.semester).count()
     if user.role!="student":
         return redirect("signin")
     return render(request,"userdashboard/studentdashboard.html",{
         "user":user,
         "courses":courses,
+        "teacher":teacher,
     })
 
-def admindashboard(request):
-    student_count=User.objects.filter(role='student').count()
-    teacher_count=User.objects.filter(role='teacher').count()
-    courses_count=Courses.objects.all().count()
-    return render(request,"userdashboard/admindashboard.html",{
-        "student_count":student_count,
-        "teacher_count":teacher_count,
-        "courses_count":courses_count
-    })
+
 
 def teachertable(request,id):
     teacher=Teacher.objects.all()
@@ -98,8 +89,10 @@ def Teacherdashboard(request):
 
     if request.user.role=='teacher':
         student_count=User.objects.filter(role='student').count()
+       
         return render(request,"userdashboard/teacherdashboard.html",{
             "student_count":student_count,
+          
        
         })
     else:
@@ -218,3 +211,7 @@ def TechInquiry(request):
     return render(request, "techpath/techform.html", {"prediction": prediction})
 
 
+
+
+def StudentView(request):
+    return render(request,"infotable/viewstudent.html")
