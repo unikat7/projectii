@@ -8,13 +8,14 @@
   <link rel="stylesheet" href="{% static 'css/semesterwiseteacher.css' %}">
 </head>
 <body>
+  <h1>h</h1>
 
   <div class="container">
     <h2>Select a Semester to View Teachers</h2>
 
     <div class="semester-list">
     {% for s in semester %}
-      <a href="{% url "teachertable" s.id %}">Semester {{s}}</a>
+      <a href="{% url 'teachertable' s.id %}">Semester {{s}}</a>
      {% endfor %}
     </div>
   </div>
